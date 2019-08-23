@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
+import MealsNavigator from './navigations/MealsNavigator';
 const fetchedFonts = async () => {
   await Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -21,11 +22,7 @@ export default function App() {
       />
     );
   }
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on my app!</Text>
-    </View>
-  );
+  return <MealsNavigator />;
 }
 
 const styles = StyleSheet.create({
