@@ -13,7 +13,7 @@ const MealsNavigator = createStackNavigator(
       }
     },
     CategoryMeals: { screen: CategoryMealsScreen },
-    MealDetails: { screen: MealDetailsScreen }
+    MealDetail: { screen: MealDetailsScreen }
   },
   {
     defaultNavigationOptions: {
