@@ -31,11 +31,7 @@ CategoryMealsScreen.navigationOptions = navigationData => {
 
   const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
   return {
-    headerTitle: selectedCategory.title,
-    headerStyle: {
-      backgroundColor: Colors.primaryColor
-    },
-    headerTintColor: 'white'
+    headerTitle: selectedCategory.title
   };
 };
 

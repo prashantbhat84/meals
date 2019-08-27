@@ -39,13 +39,9 @@ const CategoriesScreen = props => {
     />
   );
 };
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
-  headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
-  },
-  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-};
+/* CategoriesScreen.navigationOptions = {
+  headerTitle: 'Meal Categories'
+}; */
 
 const styles = StyleSheet.create({
   screen: { flex: 1, justifyContent: 'center', alignItems: 'center' },
