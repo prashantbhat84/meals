@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { CATEGORIES } from '../data/dummy-data';
+import Colors from '../constants/Colors';
+
 const CategoryMealsScreen = props => {
+  const catID = props.navigation.getParam('categoryID');
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catID);
+
   return (
     <View style={styles.screen}>
       <Text>This is the category Meals screen</Text>
+      <Text>{selectedCategory.title}</Text>
       <Button
         title='Meal Details'
         onPress={() => {
@@ -18,6 +25,18 @@ const CategoryMealsScreen = props => {
       />
     </View>
   );
+};
+CategoryMealsScreen.navigationOptions = navigationData => {
+  const catId = navigationData.navigation.getParam('categoryID');
+
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+  return {
+    headerTitle: selectedCategory.title,
+    headerStyle: {
+      backgroundColor: Colors.primaryColor
+    },
+    headerTintColor: 'white'
+  };
 };
 
 const styles = StyleSheet.create({
