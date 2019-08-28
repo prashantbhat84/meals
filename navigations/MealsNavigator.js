@@ -43,7 +43,9 @@ const FavNavigator = createStackNavigator(
     Favourites: FavouritesScreen,
     MealDetail: MealDetailsScreen
   },
-  { defaultNavigationOptions: defaultStackNavOptions }
+  {
+    defaultNavigationOptions: defaultStackNavOptions
+  }
 );
 const tabScreenConfig = {
   Meals: {
@@ -74,6 +76,7 @@ const MealsFavTabNavigator =
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
         activeTintColor: 'white',
         shifting: true
+
         //barstyle:{} use when shifting is false
       })
     : createBottomTabNavigator(tabScreenConfig, {
@@ -86,12 +89,28 @@ const FilterNav = createStackNavigator(
     Filter: FilterScreen
   },
   {
+    navigationOptions: { drawerLabel: 'Filters' },
     defaultNavigationOptions: defaultStackNavOptions
   }
 );
-const MainNavigator = createDrawerNavigator({
-  MealsFavs: MealsFavTabNavigator,
-  Filters: FilterNav
-});
+const MainNavigator = createDrawerNavigator(
+  {
+    MealsFavs: {
+      screen: MealsFavTabNavigator,
+      navigationOptions: {
+        drawerLabel: 'Meals'
+      }
+    },
+    Filters: FilterNav
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.accentColor,
+      labelStyle: {
+        fontFamily: 'open-sans-bold'
+      }
+    }
+  }
+);
 
 export default createAppContainer(MainNavigator);
