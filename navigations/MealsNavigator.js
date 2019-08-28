@@ -13,6 +13,14 @@ import MealDetailsScreen from '../screens/MealDetailScreen';
 import FavouritesScreen from '../screens/FavouriteMealsScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+  headerTitle: 'A Screen'
+};
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
@@ -25,16 +33,15 @@ const MealsNavigator = createStackNavigator(
     MealDetail: { screen: MealDetailsScreen }
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor:
-          Platform.OS === 'android' ? Colors.primaryColor : 'white'
-      },
-      headerTintColor:
-        Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-      headerTitle: 'A Screen'
-    }
+    defaultNavigationOptions: defaultStackNavOptions
   }
+);
+const FavNavigator = createStackNavigator(
+  {
+    Favourites: FavouritesScreen,
+    MealDetail: MealDetailsScreen
+  },
+  { defaultNavigationOptions: defaultStackNavOptions }
 );
 const tabScreenConfig = {
   Meals: {
@@ -50,7 +57,7 @@ const tabScreenConfig = {
     }
   },
   Favourites: {
-    screen: FavouritesScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarLabel: 'Favourites',
       tabBarIcon: tabInfo => {
