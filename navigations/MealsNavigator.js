@@ -65,6 +65,7 @@ const MealsFavTabNavigator =
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
         activeTintColor: 'white',
         shifting: true
+        //barstyle:{} use when shifting is false
       })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
