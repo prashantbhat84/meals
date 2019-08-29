@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import React from 'react';
+import { Text } from 'react-native';
 
 import {
   createStackNavigator,
@@ -18,6 +19,13 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 const defaultStackNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 25
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
   headerTitle: 'A Screen'
@@ -57,7 +65,8 @@ const tabScreenConfig = {
           <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
         );
       },
-      tabBarColor: Colors.primaryColor
+      tabBarColor: Colors.primaryColor,
+      tabBarLabel: <Text style={{ fontFamily: 'open-sans-bold' }}>Meals</Text>
     }
   },
   Favourites: {
@@ -67,7 +76,10 @@ const tabScreenConfig = {
       tabBarIcon: tabInfo => {
         return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />;
       },
-      tabBarColor: 'green'
+      tabBarColor: 'green',
+      tabBarLabel: (
+        <Text style={{ fontFamily: 'open-sans-bold' }}>Favourites</Text>
+      )
     }
   }
 };
