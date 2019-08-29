@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '60%'
+    width: '60%',
+    marginVertical: 10
   }
 });
 export default FilterScreen;
