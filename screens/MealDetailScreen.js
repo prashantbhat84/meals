@@ -9,6 +9,9 @@ import { toggleFavourite } from '../store/actions/meals';
 const MealDetailsScreen = props => {
   const id = props.navigation.getParam('mealID');
   const availableMeals = useSelector(state => state.meals.meals);
+  const currentMealIsFavourite = useSelector(state =>
+    state.meals.favouriteMeals.some(meal => meal.id === id)
+  );
   const selectedMeal = availableMeals.find(meal => meal.id === id);
   const ListItems = props => {
     return (
@@ -25,6 +28,9 @@ const MealDetailsScreen = props => {
     // props.navigation.setParams({ mealTitle: selectedMeal.title });
     props.navigation.setParams({ toggleFav: toggleFavouriteHandler });
   }, [toggleFavouriteHandler]);
+  useEffect(() => {
+    props.navigation.setParams({ IsFavourite: currentMealIsFavourite });
+  }, [currentMealIsFavourite]);
 
   return (
     <ScrollView>
@@ -49,11 +55,16 @@ MealDetailsScreen.navigationOptions = navigationData => {
   const mealTitle = navigationData.navigation.getParam('mealTitle');
   const toggleFavourite = navigationData.navigation.getParam('toggleFav');
   //const selectedMeal = MEALS.find(meal => meal.id === id);
+  const isFav = navigationData.navigation.getParam('isFavourite');
   return {
     headerTitle: mealTitle,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title='Favourite' iconName='ios-star' onPress={toggleFavourite} />
+        <Item
+          title='Favourite'
+          iconName={isFav ? 'ios-star' : 'ios-star-outline'}
+          onPress={toggleFavourite}
+        />
       </HeaderButtons>
     )
   };
