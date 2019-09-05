@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
 import DefaultText from '../components/DefaultText';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,9 @@ const MealDetailsScreen = props => {
       </View>
     );
   };
+  /* useEffect(() => {
+    props.navigation.setParams({ mealTitle: selectedMeal.title });
+  }, [selectedMeal]); */
 
   return (
     <ScrollView>
@@ -38,9 +41,10 @@ const MealDetailsScreen = props => {
 };
 MealDetailsScreen.navigationOptions = navigationData => {
   const id = navigationData.navigation.getParam('mealID');
-  const selectedMeal = MEALS.find(meal => meal.id === id);
+  const mealTitle = navigationData.navigation.getParam('mealTitle');
+  //const selectedMeal = MEALS.find(meal => meal.id === id);
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
