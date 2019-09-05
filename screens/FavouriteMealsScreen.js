@@ -1,11 +1,12 @@
 import React from 'react';
-import { MEALS } from '../data/dummy-data';
+import { useSelector } from 'react-redux';
 import MealList from '../components/MealList';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 const FavouriteMealsScreen = props => {
-  const favMeals = MEALS.filter(meal => meal.id === 'm1' || meal.id === 'm2');
-  return <MealList listData={favMeals} navigation={props.navigation} />;
+  const availableMeals = useSelector(state => state.meals.favouriteMeals);
+  //const favMeals = availableMeals.filter(meal => meal.id === 'm1' || meal.id === 'm2');
+  return <MealList listData={availableMeals} navigation={props.navigation} />;
 };
 FavouriteMealsScreen.navigationOptions = navigationData => {
   return {
